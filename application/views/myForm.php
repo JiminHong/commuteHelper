@@ -3,7 +3,7 @@
 <title>My Form</title>
 </head>
 <body>
-
+<!-- This function will return any error messages sent back by the validator. If there are no messages it returns an empty string. -->
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('form'); ?>
