@@ -83,16 +83,3 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-
-
-//$db['default']['dsn'] = 'pgsql:host=localhost;port=5432;dbname=database_name';
-
-
-
-
-
-
-
-
-
-
