@@ -76,6 +76,16 @@ width: 108px;
     </div>
 </div>
     <div id="content" class="container">
+        
+
+
+        <div>
+            <a href="<?=site_url('user/view_your_request')?>" style="float: right;">your_request</a>
+        </div>
+
+
+
+
         <div id="register_form">
         <h1>Sign Up</h1>
             <form action="<?=site_url('user/do_register')?>" method="post">

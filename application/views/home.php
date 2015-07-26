@@ -1,36 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '728599323911324',
-          xfbml      : true,
-          version    : 'v2.4'
-        });
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
-
 	<div>
 		<a href="<?=site_url('user/logout')?>" style="float: right;">logout</a>
 	</div>
+
+  <div>
+    <a href="<?=site_url('user/view_my_request')?>" style="float: right;">my_request</a>
+  </div>
+
 	<div>
 		<?php echo "Welcome ".$this->session->userdata('username');
 			$the_username = $this->session->userdata('username');
       echo "<br>user id ".$this->session->userdata('user_id');
 		?>
-
 	</div>
 
 	<h4>Request ride</h4>
@@ -50,18 +37,20 @@
             
             </form>
         </div>
-    <h4>My requests</h4>
+    <h4>List of requests</h4>
+
     <?php foreach ($request as $request_item): ?>
 
-        <?php echo $request_item['pickup']." | ".$request_item['dropoff']." | ".$request_item['when']." | ".$request_item['user_id']; ?><br>
-
+        <?php echo $request_item['pickup']." | ".$request_item['dropoff']." | ".$request_item['when']." | ".$request_item['user_id']; ?><br />
+        <!-- <a onclick='postToFeed(); return false;'>Post to Feed</a>
+    <p id='msg'></p> -->
     <?php endforeach ?>
+    
+    <br />
 
-        <br />
-
-        <div class="error">
-        <?php echo validation_errors(); ?>
-        </div>
+    <div class="error">
+    <?php echo validation_errors(); ?>
+    </div>
 
 
 

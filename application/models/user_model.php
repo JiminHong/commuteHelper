@@ -78,7 +78,21 @@ class User_model extends CI_Model {
 	                return $query->result_array();
 	        }
 
-	        $query = $this->db->get_where('request', array('user_id' => $user_id));
+	        // $query = $this->db->get_where('request', array('user_id' => $user_id));
+	        return $query->row_array();
+	}
+
+	public function get_your_request($user_id = FALSE)
+	{
+	        if ($user_id === FALSE)
+	        {
+	        	$data = '10';
+                $query = $this->db->get('request');
+                $this->db->where('user_id', $data);
+                return $query->result_array();
+	        }
+
+	        // $query = $this->db->get_where('request', array('user_id' => $user_id));
 	        return $query->row_array();
 	}
 

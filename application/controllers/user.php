@@ -10,16 +10,16 @@ class User extends CI_Controller {
 
 	public function index(){
 		$data['request'] = $this->user_model->get_request();
-		$data['my_request'] = $this->user_model->get_my_request();
+		// $data['my_request'] = $this->user_model->get_my_request();
         
 		if(($this->session->userdata('user_id')!=""))
 		{
 		//redirect(site_url('user/home'));
 			//$this->profile();
 			$data['request'] = $this->user_model->get_request();
-			$data['my_request'] = $this->user_model->get_my_request();
+			// $data['my_request'] = $this->user_model->get_my_request();
 			$this->load->view('home', $data);
-			$this->load->view('my_request', $data);
+			// $this->load->view('my_request', $data);
 		}
 		else
 		{
@@ -114,6 +114,33 @@ class User extends CI_Controller {
 				//$this->load->view('request_success');
 				$this->index();
 			}
+	}
+
+	public function view_my_request(){
+		$data['my_request'] = $this->user_model->get_my_request();
+        
+		if(($this->session->userdata('user_id')!=""))
+		{
+			$user_id = $this->session->userdata('user_id');
+			$data['my_request'] = $this->user_model->get_my_request();
+			$this->load->view('my_request', $data);
+		}
+		
+	}
+
+	public function get_public_page(){
+		$data['request'] = $this->user_model->get_request();
+		$this->load->view('public_page', $data);
+	}
+
+	public function view_your_request(){
+		$data['your_request'] = $this->user_model->get_your_request();
+		if($data!="")
+		{
+			$data['your_request'] = $this->user_model->get_your_request();
+			$this->load->view('public_page', $data);
+		}
+		
 	}
 
 
