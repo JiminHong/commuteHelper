@@ -47,18 +47,10 @@
                 <input type="date" name="when"/>
 
             <input type="submit" value="Request ride" name="request"/>
-            <div
-              class="fb-like"
-              data-share="true"
-              data-width="450"
-              data-show-faces="true">
-            </div>
+            
             </form>
         </div>
-
     <h4>My requests</h4>
-
-    <h4>List of requests</h4>
     <?php foreach ($request as $request_item): ?>
 
         <?php echo $request_item['pickup']." | ".$request_item['dropoff']." | ".$request_item['when']." | ".$request_item['user_id']; ?><br>

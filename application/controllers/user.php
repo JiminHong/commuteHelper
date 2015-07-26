@@ -10,13 +10,16 @@ class User extends CI_Controller {
 
 	public function index(){
 		$data['request'] = $this->user_model->get_request();
+		$data['my_request'] = $this->user_model->get_my_request();
         
 		if(($this->session->userdata('user_id')!=""))
 		{
 		//redirect(site_url('user/home'));
 			//$this->profile();
 			$data['request'] = $this->user_model->get_request();
+			$data['my_request'] = $this->user_model->get_my_request();
 			$this->load->view('home', $data);
+			$this->load->view('my_request', $data);
 		}
 		else
 		{
@@ -113,20 +116,5 @@ class User extends CI_Controller {
 			}
 	}
 
-
-
-	// public function index_request(){
- //            $data['request'] = $this->user_model->get_request();
- //            $this->load->view('home', $data);
- //    }
-
-    public function view_my_request($usernam = NULL){
-            $data['request_item'] = $this->news_model->get_request($usernam);
-            if (empty($data['request_item']))
-	        {
-	                show_404();
-	        }
-	        $this->load->view('home', $data);
-    }
 
 }

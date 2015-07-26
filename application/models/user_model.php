@@ -50,7 +50,7 @@ class User_model extends CI_Model {
 			'when'=>$this->input->post('when'),
 			'user_id'=>$this->session->userdata('user_id')
 		);
-		echo "<br>user id in request in model ".$this->session->userdata('user_id');
+		//echo "<br>user id in request in model ".$this->session->userdata('user_id');
 		$this->db->insert('request',$data);
 
 		return true;
@@ -62,6 +62,19 @@ class User_model extends CI_Model {
 	        if ($user_id === FALSE)
 	        {
 	                $query = $this->db->get('request');
+	                return $query->result_array();
+	        }
+
+	        $query = $this->db->get_where('request', array('user_id' => $user_id));
+	        return $query->row_array();
+	}
+
+	public function get_my_request($user_id = FALSE)
+	{
+	        if ($user_id === FALSE)
+	        {
+	                $query = $this->db->get('request');
+	                $this->db->where('user_id', $this->session->userdata('user_id'));
 	                return $query->result_array();
 	        }
 
