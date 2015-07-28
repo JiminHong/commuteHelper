@@ -127,23 +127,8 @@ class User extends CI_Controller {
 	}
 
 	public function search_date(){
-		// $rules = array(
-		// array('field'=>'searchDate','label'=>'Enter the date','rules'=>'trim|required')
-		// );
-
-		// $this->form_validation->set_rules($rules);
-		
-		// if($this->form_validation->run() == FALSE){
-		// 	echo "Enter the date";
-		// }
-		// else{
-		// 	$data = '2015-07-28';
-		// 	$this->user_model->search_date_model();
-		// 	$this->load->view('your_request_page', $data);
-		// }
 
 		$this->user_model->search_date_model();
-		// $this->load->view('your_request_page', $data);
 
 		$data['your_request'] = $this->user_model->search_date_model();
 		if($data!="")
@@ -152,6 +137,18 @@ class User extends CI_Controller {
 			$this->load->view('your_request_page', $data);
 		}
 
+	}
+
+	public function get_request_id(){
+		$this->user_model->search_request_id_model();
+
+		$data['your_request'] = $this->user_model->search_request_id_model();
+		if($data!="")
+		{
+			$data['your_request'] = $this->user_model->search_request_id_model();
+			$this->load->view('your_request_page', $data);
+		}
+		// $request_id = $this->uri->segment(3, 0);
 	}
 
 }

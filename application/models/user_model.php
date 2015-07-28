@@ -75,27 +75,37 @@ class User_model extends CI_Model {
 	        return $query->row_array();
 	}
 
-	public function get_your_request($user_id = FALSE)
-	{
-	        if ($user_id === FALSE)
-	        {
-	        	$data = '10';
-                $query = $this->db->get('request');
-                $this->db->where('user_id', $data);
-                return $query->result_array();
-	        }
-	        return $query->row_array();
-	}
+	// public function get_your_request($user_id = FALSE)
+	// {
+	//         if ($user_id === FALSE)
+	//         {
+	//         	$data = '10';
+ //                $query = $this->db->get('request');
+ //                $this->db->where('user_id', $data);
+ //                return $query->result_array();
+	//         }
+	//         return $query->row_array();
+	// }
 
-	public function search_date_model(){
+	public function search_request_id_model(){
 
-		$data = $this->input->post('searchDate');
+		// $data = $this->input->post('searchDate');
+
+		// // var_dump($data);
+		// $query = $this->db->get('request');
+  //       $this->db->where('when', $data);
+  //       return $query->result_array();
+
+		$data = $this->input->get('request_id');
+		// echo $data;
 
 		// var_dump($data);
 		$query = $this->db->get('request');
-        $this->db->where('when', $data);
+        $this->db->where('request_id', $data);
         return $query->result_array();
 
 	}
+
+	
 
 }
