@@ -11,7 +11,6 @@ class User_model extends CI_Model {
 		'username'=>$this->input->post('username'),
 		'email'=>$this->input->post('email'),
 		'password'=>md5($this->input->post('password'))
-		// 'gender'=>$this->input->post('gender') 
 		);
 		$this->db->insert('users',$data);
 		return true;
@@ -40,9 +39,6 @@ class User_model extends CI_Model {
 	}
 
 	public function request(){
-		// $this->db->select('username');
-		// $this->db->from('users');
-		// $this->db->join('request', 'request.username = users.username');
 
 		$data=array(
 			'pickup'=>$this->input->post('pickup'),
@@ -50,7 +46,6 @@ class User_model extends CI_Model {
 			'when'=>$this->input->post('when'),
 			'user_id'=>$this->session->userdata('user_id')
 		);
-		//echo "<br>user id in request in model ".$this->session->userdata('user_id');
 		$this->db->insert('request',$data);
 
 		return true;
@@ -77,8 +72,6 @@ class User_model extends CI_Model {
 	                $this->db->where('user_id', $this->session->userdata('user_id'));
 	                return $query->result_array();
 	        }
-
-	        // $query = $this->db->get_where('request', array('user_id' => $user_id));
 	        return $query->row_array();
 	}
 
@@ -91,10 +84,18 @@ class User_model extends CI_Model {
                 $this->db->where('user_id', $data);
                 return $query->result_array();
 	        }
-
-	        // $query = $this->db->get_where('request', array('user_id' => $user_id));
 	        return $query->row_array();
 	}
 
+	public function search_date_model(){
+
+		$data = $this->input->post('searchDate');
+
+		// var_dump($data);
+		$query = $this->db->get('request');
+        $this->db->where('when', $data);
+        return $query->result_array();
+
+	}
 
 }

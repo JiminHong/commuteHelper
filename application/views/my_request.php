@@ -10,7 +10,7 @@
 
     <script>
       	FB.init({appId: "728599323911324", status: true, cookie: true});
- 		var my_link = 'http://localhost:8888';
+ 		var my_link = 'http://localhost:8888/user/view_your_request';
       	function postToFeed() {
  
 	        // calling the API ...

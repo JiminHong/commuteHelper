@@ -3,23 +3,17 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class User extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
-		//$this->load->library('form_validation');
 		$this->load->model('user_model');
 		$this->load->helper('url');
 	}
 
 	public function index(){
 		$data['request'] = $this->user_model->get_request();
-		// $data['my_request'] = $this->user_model->get_my_request();
         
 		if(($this->session->userdata('user_id')!=""))
 		{
-		//redirect(site_url('user/home'));
-			//$this->profile();
 			$data['request'] = $this->user_model->get_request();
-			// $data['my_request'] = $this->user_model->get_my_request();
 			$this->load->view('home', $data);
-			// $this->load->view('my_request', $data);
 		}
 		else
 		{
@@ -40,8 +34,6 @@ class User extends CI_Controller {
 		else{
 			$auth=$this->user_model->login($this->input->post('l_email'),$this->input->post('l_pass'));
 			if($auth){
-				// redirect(site_url('user/home'));
-				// $this->profile();
 				$this->index();
 			}
 			else{
@@ -49,8 +41,6 @@ class User extends CI_Controller {
 				echo "function login auth error";
 			}
 		}
-
-
 	}
 
 
@@ -77,8 +67,6 @@ class User extends CI_Controller {
 			}
 	}
 
-
-
 	public function logout(){
 		$this->session->sess_destroy();
 		redirect(site_url());
@@ -90,7 +78,6 @@ class User extends CI_Controller {
 
 	public function get_userdata($username){
 		$this->load->model('User_model');
-
 	}
 
 	public function do_request(){
@@ -109,9 +96,7 @@ class User extends CI_Controller {
 				$this->load->view('home');
 			}
 			else{
-				// $user_id = 'definemeplease';
 				$this->user_model->request();
-				//$this->load->view('request_success');
 				$this->index();
 			}
 	}
@@ -128,20 +113,45 @@ class User extends CI_Controller {
 		
 	}
 
-	public function get_public_page(){
-		$data['request'] = $this->user_model->get_request();
-		$this->load->view('public_page', $data);
-	}
-
 	public function view_your_request(){
 		$data['your_request'] = $this->user_model->get_your_request();
 		if($data!="")
 		{
 			$data['your_request'] = $this->user_model->get_your_request();
-			$this->load->view('public_page', $data);
+			$this->load->view('your_request_page', $data);
 		}
-		
 	}
 
+	public function search(){
+		$this->load->view('search_date_page');
+	}
+
+	public function search_date(){
+		// $rules = array(
+		// array('field'=>'searchDate','label'=>'Enter the date','rules'=>'trim|required')
+		// );
+
+		// $this->form_validation->set_rules($rules);
+		
+		// if($this->form_validation->run() == FALSE){
+		// 	echo "Enter the date";
+		// }
+		// else{
+		// 	$data = '2015-07-28';
+		// 	$this->user_model->search_date_model();
+		// 	$this->load->view('your_request_page', $data);
+		// }
+
+		$this->user_model->search_date_model();
+		// $this->load->view('your_request_page', $data);
+
+		$data['your_request'] = $this->user_model->search_date_model();
+		if($data!="")
+		{
+			$data['your_request'] = $this->user_model->search_date_model();
+			$this->load->view('your_request_page', $data);
+		}
+
+	}
 
 }

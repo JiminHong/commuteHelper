@@ -76,15 +76,10 @@ width: 108px;
     </div>
 </div>
     <div id="content" class="container">
-        
-
 
         <div>
             <a href="<?=site_url('user/view_your_request')?>" style="float: right;">your_request</a>
         </div>
-
-
-
 
         <div id="register_form">
         <h1>Sign Up</h1>
@@ -97,12 +92,6 @@ width: 108px;
 
                 <label for="password">Password</label>
                 <input type="password" name="password"/>
-
-              <!--   <div>
-                    <label for="gender">Gender</label>
-                    <input type="radio" name="gender" value="male" <?php echo set_radio('gender', 'male'); ?>/>Male
-                    <input type="radio" name="gender" value="female" <?php echo set_radio('gender', 'female'); ?>/>Female
-                </div> -->
             <input type="submit" value="Sign up" name="register"/>
             </form>
         </div>
